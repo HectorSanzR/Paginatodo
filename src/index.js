@@ -4,16 +4,9 @@ import './styles.css';
 import {Todo, TodoList } from './classes/index.js'
 import { crearTodoHtml } from './js/componentes';
 
-
-// import { Todo } from './classes/todo.class';
-// import {TodoList} from './classes/todo-list.class';
 export const todoList = new TodoList();
 
 
-const tarea = new Todo('Aprender javascrip!');
 
-todoList.nuevoTodo(tarea);
-// tarea.completado = true;
-console.log( todoList);
 
-crearTodoHtml(tarea);
+  todoList.todos.forEach( crearTodoHtml);
