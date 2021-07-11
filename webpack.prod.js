@@ -86,12 +86,12 @@ module.exports = {
         }),
 
 
-        new CopyPlugin({
-            patterns: [
-                {from:'src/assets/', to:'assests/'},
+        // new CopyPlugin({
+        //     patterns: [
+        //         {from:'src/assets/', to:'assests/'},
               
-            ],
-          }),
+        //     ],
+        //   }),
     ]
  
 }

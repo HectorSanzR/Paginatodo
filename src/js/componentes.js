@@ -1,18 +1,55 @@
-import '../css/componentes.css';
-// import webpacklogo from '../assets/img/webpack-logo.png';
+import { Todo, TodoList } from "../classes";
+import { todoList } from "..";
+//import { Todo } from "../classes";
+///referencia
+const divTodoList = document.querySelector('.todo-list');
+const txtInput = document.querySelector('.new-todo');
 
 
-export const saludar = ( nombre = 'sin nombre' ) => {
-    console.log('Creando etiqueta h1');
 
-    const h1 = document.createElement('h1');
-    h1.innerText = `habla care verga ${ nombre }`;
 
-    document.body.append( h1 );
+export const crearTodoHtml = (todo) =>{
 
+    const htmlTodo = `
+            <li class="${ (todo.completado) ? 'completed' : '' }" data-id="${todo.id}">
+            <div class="view">
+                <input class="toggle" type="checkbox" ${ (todo.completado) ? 'checked' : '' }>
+                <label>${todo.tarea}</label>
+                <button class="destroy"></button>
+            </div>
+            <input class="edit" value="Create a TodoMVC template">
+                 </li> `;
+
+    const div = document.createElement('div');
     
-    // Img
-    // const img = document.createElement('img');
-    // img.src = webpacklogo;
-    // document.body.append( img );
+    div.innerHTML = htmlTodo;
+
+    divTodoList.append (div.firstElementChild);
+
+    return div.firstElementChild;
+
 }
+
+
+txtInput.addEventListener('keyup',(event)=> {
+    if ( event.keyCode === 13 && txtInput.value.length > 0){
+
+        console.log(txtInput.value);
+        const nuevoTodo = new Todo(txtInput.value);
+        todoList.nuevoTodo(nuevoTodo);
+
+        console.log(todoList);
+        crearTodoHtml (nuevoTodo);
+        txtInput.value = '';
+    }
+
+});
+
+
+
+divTodoList.addEventListener('click', (event) =>{
+
+    console.log('click');
+    console.log(event.target.localName);
+})
+
